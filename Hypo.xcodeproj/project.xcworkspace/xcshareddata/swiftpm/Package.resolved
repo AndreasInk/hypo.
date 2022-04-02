@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "sfsafesymbols",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/piknotech/SFSafeSymbols.git",
+      "state" : {
+        "branch" : "stable",
+        "revision" : "a7c26ad6ca30afaa54af287f60540e79fa896729"
+      }
+    }
+  ],
+  "version" : 2
+}
