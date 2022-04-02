@@ -6,9 +6,9 @@
 //
 
 import SwiftUI
-import SwiftUICharts
 
-struct ContentView: View {
+
+struct HomeView: View {
     var body: some View {
         NavigationView {
             ScrollView {
@@ -38,11 +38,6 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
 
 struct HomeScreenDataView: View {
     var title: String
