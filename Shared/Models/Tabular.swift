@@ -8,6 +8,7 @@
 import SwiftUI
 import TabularData
 import HealthKit
+import Accelerate
 
 class Tabular: ObservableObject {
     
@@ -20,7 +21,7 @@ class Tabular: ObservableObject {
 //        return try
 //    }
     func toCSV(_ healthData: [HealthData], _ fileName: String) throws -> URL {
-        let df = try toDF(healthData)
+        let df =  toDF(healthData)
        
         let url = getDocDir().appendingPathComponent(fileName + ".csv")
         try df.writeCSV(to: url)
@@ -31,28 +32,47 @@ class Tabular: ObservableObject {
         
         return paths[0]
     }
+    
     func toDF( _ data: [HealthData]) -> DataFrame {
         var df = DataFrame()
+       // DispatchQueue.main.async {
+          
+       
         var groupedData = [[HealthData]]()
         for type in HKQuantityTypeIdentifier.allCases {
             let filteredToType = data.filter { data in
-                return data.title == type.rawValue && !data.data.isNaN
+                return data.title == type.rawValue && !data.data.isNaN && data.title != HKQuantityTypeIdentifier.restingHeartRate.rawValue && data.title != HKQuantityTypeIdentifier.activeEnergyBurned.rawValue
             }
             groupedData.append(filteredToType)
         }
-        if let maxCount = groupedData.map({$0.count}).max() {
+        
+        var col = Column<Date>(name: "Date", capacity: 100000)
+            if let earlyDate = (groupedData.map{$0.map{$0.date}.min() ?? Date()}.min()) {
+                if let lateDate = (groupedData.map{$0.map{$0.date}.max() ?? Date()}.max()) {
+            col.append(contentsOf: Date.datesHourly(from: earlyDate, to: lateDate))
+            df.append(column: col)
+                }
+            }
+         let maxCount = df.shape.rows
+        var aggregateData = [Date: Double]()
         for grouped in groupedData {
             if !grouped.isEmpty {
-                if let name = grouped.first?.title {
-                    
-                    let col = Column(name:  name, contents: fillMissingData(grouped.map{$0.data}, maxCount))
-                print(col)
-                df.append(column: col)
-                }
-            //csv.append(HealthDataCSV(type: type.rawValue, date: filteredToType.map{$0.date}, data: filteredToType.map{$0.data}))
+            for slice in grouped.sliced(by: [.hour, .day, .month, .year], for: \.date) {
+                if !slice.value.isEmpty {
+               
+                    aggregateData[slice.key] =  vDSP.mean(slice.value.map{$0.data})
+                  
             }
         }
+            if !aggregateData.map({$0.value}).isEmpty {
+            var col = Column<Double>(name: grouped.map{$0.title}.first ?? "", capacity: maxCount)
+            
+            col.append(contentsOf: self.fillMissingData(aggregateData.map{$0.value}, maxCount))
+            df.append(column: col)
+            }
+            }
         }
+        //}
         return df
     }
     func fillMissingData(_ data: [Double], _ max: Int) -> [Double] {

@@ -48,6 +48,8 @@
 		EDE2CBE627F8FEE300C874ED /* MultiLineChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE2CBC527F8FEE300C874ED /* MultiLineChartView.swift */; };
 		EDE2CBE727F8FEE300C874ED /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE2CBC627F8FEE300C874ED /* Line.swift */; };
 		EDE2CBE827F8FEE300C874ED /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE2CBC627F8FEE300C874ED /* Line.swift */; };
+		EDE2CC1627F9882000C874ED /* ArrExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE2CC1527F9882000C874ED /* ArrExt.swift */; };
+		EDE2CC1727F9882000C874ED /* ArrExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE2CC1527F9882000C874ED /* ArrExt.swift */; };
 		EDFE765027F8A1D0007C9196 /* Hypo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EDFE763D27F8A1CE007C9196 /* Hypo.xcdatamodeld */; };
 		EDFE765127F8A1D0007C9196 /* Hypo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EDFE763D27F8A1CE007C9196 /* Hypo.xcdatamodeld */; };
 		EDFE765227F8A1D0007C9196 /* HypoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDFE763F27F8A1CE007C9196 /* HypoApp.swift */; };
@@ -93,6 +95,7 @@
 		EDE2CBC427F8FEE300C874ED /* Path+QuadCurve.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Path+QuadCurve.swift"; sourceTree = "<group>"; };
 		EDE2CBC527F8FEE300C874ED /* MultiLineChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiLineChartView.swift; sourceTree = "<group>"; };
 		EDE2CBC627F8FEE300C874ED /* Line.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
+		EDE2CC1527F9882000C874ED /* ArrExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrExt.swift; sourceTree = "<group>"; };
 		EDFE763E27F8A1CE007C9196 /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
 		EDFE763F27F8A1CE007C9196 /* HypoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HypoApp.swift; sourceTree = "<group>"; };
 		EDFE764027F8A1CE007C9196 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -136,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				EDE2CBA527F8BBAA00C874ED /* DatesExt.swift */,
+				EDE2CC1527F9882000C874ED /* ArrExt.swift */,
 				EDFE766E27F8A228007C9196 /* HealthExt.swift */,
 			);
 			path = Exts;
@@ -377,6 +381,7 @@
 				EDE2CBDB27F8FEE300C874ED /* LineView.swift in Sources */,
 				EDE2CBD727F8FEE300C874ED /* PieChartView.swift in Sources */,
 				EDE2CBD127F8FEE300C874ED /* PieChartRow.swift in Sources */,
+				EDE2CC1627F9882000C874ED /* ArrExt.swift in Sources */,
 				EDE2CBE527F8FEE300C874ED /* MultiLineChartView.swift in Sources */,
 				EDFE765027F8A1D0007C9196 /* Hypo.xcdatamodeld in Sources */,
 				EDE2CBD327F8FEE300C874ED /* PieChartHelpers.swift in Sources */,
@@ -413,6 +418,7 @@
 				EDE2CBDC27F8FEE300C874ED /* LineView.swift in Sources */,
 				EDE2CBD827F8FEE300C874ED /* PieChartView.swift in Sources */,
 				EDE2CBD227F8FEE300C874ED /* PieChartRow.swift in Sources */,
+				EDE2CC1727F9882000C874ED /* ArrExt.swift in Sources */,
 				EDE2CBE627F8FEE300C874ED /* MultiLineChartView.swift in Sources */,
 				EDFE765127F8A1D0007C9196 /* Hypo.xcdatamodeld in Sources */,
 				EDE2CBD427F8FEE300C874ED /* PieChartHelpers.swift in Sources */,
