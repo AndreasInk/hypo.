@@ -26,9 +26,9 @@ struct HypoApp: App {
                     health.start()
                     DispatchQueue.main.asyncAfter(deadline: .now() + 10.0) {
                     do {
-                        try health.toCSV(health.groupBy(health.healthData), urlName)
+                        try health.toCSV(health.healthData, urlName)
                     } catch {
-                        
+                        print(error)
                     }
                     
                     DispatchQueue.main.asyncAfter(deadline: .now() + 10.0) {

@@ -77,7 +77,7 @@ struct HomeScreenDataView: View {
                             }
                         }
                     } label: {
-                        Label("View raw Data", systemImage: "ladybug.fill")
+                        Label("View Raw Data", systemImage: "ladybug.fill")
                     }
                     
                     

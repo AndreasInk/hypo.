@@ -11,14 +11,15 @@ import HealthKit
 
 class Tabular: ObservableObject {
     
-    func toDF(_ healthData: [HealthDataCSV]) throws -> DataFrame {
-        
-        let encoder = JSONEncoder()
-       
-       print(healthData)
-        return try DataFrame(jsonData: encoder.encode(healthData))
-    }
-    func toCSV(_ healthData: [HealthDataCSV], _ fileName: String) throws -> URL {
+//    func toDF(_ healthData: [HealthDataCSV]) throws -> DataFrame {
+//        let df = DataFrame()
+//        let encoder = JSONEncoder()
+//
+//       print("ENCODINF")
+//       print(healthData)
+//        return try
+//    }
+    func toCSV(_ healthData: [HealthData], _ fileName: String) throws -> URL {
         let df = try toDF(healthData)
        
         let url = getDocDir().appendingPathComponent(fileName + ".csv")
@@ -30,15 +31,43 @@ class Tabular: ObservableObject {
         
         return paths[0]
     }
-    func groupBy( _ data: [HealthData]) -> [HealthDataCSV] {
-        var csv = [HealthDataCSV]()
+    func toDF( _ data: [HealthData]) -> DataFrame {
+        var df = DataFrame()
+        var groupedData = [[HealthData]]()
         for type in HKQuantityTypeIdentifier.allCases {
             let filteredToType = data.filter { data in
-                return data.title == type.rawValue
+                return data.title == type.rawValue && !data.data.isNaN
             }
-            csv.append(HealthDataCSV(type: type.rawValue, date: filteredToType.map{$0.date}, data: filteredToType.map{$0.data}))
-            print(csv)
+            groupedData.append(filteredToType)
         }
-        return csv
+        if let maxCount = groupedData.map({$0.count}).max() {
+        for grouped in groupedData {
+            if !grouped.isEmpty {
+                if let name = grouped.first?.title {
+                    
+                    let col = Column(name:  name, contents: fillMissingData(grouped.map{$0.data}, maxCount))
+                print(col)
+                df.append(column: col)
+                }
+            //csv.append(HealthDataCSV(type: type.rawValue, date: filteredToType.map{$0.date}, data: filteredToType.map{$0.data}))
+            }
+        }
+        }
+        return df
+    }
+    func fillMissingData(_ data: [Double], _ max: Int) -> [Double] {
+        var data = data
+        print("DATA COUNT")
+        print(data.count)
+        print("MAX")
+        print(max)
+        if max > data.count {
+        for i in data.count...max - 1 {
+            data.append(0)
+        }
+        }
+        print("NEW DATA COUNt")
+        print(data.count)
+        return data
     }
 }
