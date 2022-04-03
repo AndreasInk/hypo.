@@ -8,7 +8,7 @@
 @preconcurrency import SwiftUI
 import SFSafeSymbols
 
-struct HealthData: Identifiable, Codable, Hashable, Sendable {
+struct HealthData: Identifiable, Codable, Hashable {
     var id: String
     //var type: DataType
     var title: String

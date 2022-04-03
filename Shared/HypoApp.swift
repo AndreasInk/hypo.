@@ -15,7 +15,7 @@ struct HypoApp: App {
     @State var urlName = "HealthData"
     var body: some Scene {
         WindowGroup {
-            HomeView()
+            HomeView(health: health)
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 .sheet(isPresented: $share) {
                     
