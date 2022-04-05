@@ -42,15 +42,13 @@ struct HomeView: View {
 
 
 struct HomeScreenDataView: View {
-    var title: String
-    var information: String
-    var data: String //for now
+    var data: HealthData
     @Binding var dataToExport: String?
     var body: some View {
         NavigationLink {
             List {
                 Section {
-                    Text(information)
+                    Text(data.text)
                         .padding(8)
                         .font(.system(size: 16, weight: .light, design: .monospaced))
                 } header: {
@@ -70,11 +68,11 @@ struct HomeScreenDataView: View {
                                 Text("3987")
                             }
                         }
-                        .navigationTitle("Raw \(title) Data")
+                        .navigationTitle("Raw \(data.title) Data")
                         .toolbar {
                             ToolbarItem(placement: .navigationBarTrailing) {
                                 Button("Export Data") {
-                                    dataToExport = data
+//                                    dataToExport = data
                                 }
                             }
                         }
@@ -88,9 +86,9 @@ struct HomeScreenDataView: View {
                 }
                 
             }
-            .navigationTitle(title)
+            .navigationTitle(data.title)
         } label: {
-            MultiLineChartView(data: [([8,32,11,23,40,28], GradientColors.green), ([90,99,78,111,70,60,77], GradientColors.purple), ([34,56,72,38,43,100,50], GradientColors.orngPink)], title: title)
+            MultiLineChartView(data: [([8,32,11,23,40,28], GradientColors.green), ([90,99,78,111,70,60,77], GradientColors.purple), ([34,56,72,38,43,100,50], GradientColors.orngPink)], title: data.title)
                 .padding()
         }
     }
