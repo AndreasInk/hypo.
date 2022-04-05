@@ -13,6 +13,10 @@ struct HypoApp: App {
     @StateObject var health: Health = Health()
     @State var share = false
     @State var urlName = "HealthData"
+    init() {
+        UITableView.appearance().separatorStyle = .none
+        UITableView.appearance().separatorColor = .clear
+    }
     var body: some Scene {
         WindowGroup {
             HomeView(health: health)
