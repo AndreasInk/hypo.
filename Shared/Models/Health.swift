@@ -13,7 +13,7 @@ import Accelerate
 class Health: ML {
     let store = HKHealthStore()
     @Published var healthData = [HealthData]()
-    
+    @Published var log = [Log]()
     func start() {
         self.store.requestAuthorization(toShare: [], read: Set<HKSampleType>(HKQuantityTypeIdentifier.allCases.map{HKObjectType.quantityType(forIdentifier: $0)!})) { (success, error) in
             self.getAllData()

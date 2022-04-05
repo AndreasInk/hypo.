@@ -15,7 +15,7 @@ struct HypoApp: App {
     @State var urlName = "HealthData"
     var body: some Scene {
         WindowGroup {
-            HomeView()
+            HomeView(health: health)
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 .sheet(isPresented: $share) {
                     
@@ -32,7 +32,7 @@ struct HypoApp: App {
                     }
                     
                     DispatchQueue.main.asyncAfter(deadline: .now() + 10.0) {
-                        share = true
+                        //share = true
                     }
                     }
                 }

@@ -9,27 +9,29 @@ import SwiftUI
 
 
 struct HomeView: View {
+    @ObservedObject var health: Health
     var body: some View {
         NavigationView {
-            ScrollView {
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack {
-                        HomeScreenDataView(
-                            title: "Steps",
-                            information: "This is some nice information about Walking. I like walking like I do talking and drinking water.",
-                            data: "",
-                            dataToExport: .constant("")
-                        )
-
-                        HomeScreenDataView(
-                            title: "Heart Rate",
-                            information: "PLEASE GO TO THE DOCTOR",
-                            data: "",
-                            dataToExport: .constant("")
-                        )
-                    }
-                }
-            }
+            LogListView(health: health)
+//            ScrollView {
+//                ScrollView(.horizontal, showsIndicators: false) {
+//                    HStack {
+//                        HomeScreenDataView(
+//                            title: "Steps",
+//                            information: "This is some nice information about Walking. I like walking like I do talking and drinking water.",
+//                            data: "",
+//                            dataToExport: .constant("")
+//                        )
+//
+//                        HomeScreenDataView(
+//                            title: "Heart Rate",
+//                            information: "PLEASE GO TO THE DOCTOR",
+//                            data: "",
+//                            dataToExport: .constant("")
+//                        )
+//                    }
+//                }
+//            }
 //            .fullScreenCover(isPresented: .constant(true)) {
 //                ExportDataView(data: "data", dataToExport: .constant(""), isPresented: .constant(true))
 //            }
